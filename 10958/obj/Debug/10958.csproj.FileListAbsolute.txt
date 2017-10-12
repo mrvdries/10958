@@ -1,0 +1,7 @@
+c:\users\van-d\source\repos\10958\10958\bin\Debug\10958.exe.config
+c:\users\van-d\source\repos\10958\10958\bin\Debug\10958.exe
+c:\users\van-d\source\repos\10958\10958\bin\Debug\10958.pdb
+c:\users\van-d\source\repos\10958\10958\obj\Debug\10958.csprojResolveAssemblyReference.cache
+c:\users\van-d\source\repos\10958\10958\obj\Debug\10958.csproj.CoreCompileInputs.cache
+c:\users\van-d\source\repos\10958\10958\obj\Debug\10958.exe
+c:\users\van-d\source\repos\10958\10958\obj\Debug\10958.pdb

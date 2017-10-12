@@ -1,0 +1,6 @@
+iteration:1838, command:1+2+3+4*5^6/7*8/9, result:10050.6428571429
+iteration:11815, command:1+2+3/4/5^6*7/8+9, result:10265.90625
+iteration:11816, command:1+2+3/4/5^6*7/8-9, result:10247.90625
+iteration:20588, command:1+2-3-4*5^6/7*8/9, result:10044.6428571429
+iteration:33088, command:1+2*3+4*5^6/7*8/9, result:10051.6428571429
+iteration:39212, command:1+2*3*4*5/6/7*8*9, result:10081
