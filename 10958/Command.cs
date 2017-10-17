@@ -48,6 +48,7 @@ namespace _10958
             if (start >= 0) { end = ops.IndexOf(')', start) - 1; } //position corresponding closing bracket
             while (start != -1)
             {
+                end = SolveOperations('|', start, end);
                 end = SolveOperations('^', start, end);
                 end = SolveOperations('*', start, end);
                 end = SolveOperations('/', start, end);
@@ -60,6 +61,7 @@ namespace _10958
                 start = ops.LastIndexOf('('); //position last open bracket
                 if (start >= 0) { end = ops.IndexOf(')', start) - 1; } //position corresponding closing bracket
             }
+            SolveOperations('|');
             SolveOperations('^');
             SolveOperations('*');
             SolveOperations('/');
@@ -77,6 +79,7 @@ namespace _10958
             {
                 double val = -1;
                 switch (op) {
+                    case '|': val = Convert.ToDouble("" + ops[pos - 1] + ops[pos + 1]); break;
                     case '^': val = Math.Pow(Convert.ToDouble(ops[pos - 1]), Convert.ToDouble(ops[pos + 1])); break;
                     case '*': val = Convert.ToDouble(ops[pos - 1]) * Convert.ToDouble(ops[pos + 1]); break;
                     case '/': val = Convert.ToDouble(ops[pos - 1]) / Convert.ToDouble(ops[pos + 1]); break;

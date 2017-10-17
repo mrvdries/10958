@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace _10958
     {
         private int[] vals;
 
-        private char[] ops = new char[] { '+', '-', '*', '/', '^' };
+        private char[] ops = new char[] { '+', '-', '*', '/', '^', '|' };
 
         public Generator()
         {
@@ -143,6 +144,8 @@ namespace _10958
                         read = sr.ReadLine();
                         i++;
                     }
+                    Brackets brackets = new Brackets();
+                    ArrayList list = brackets.Generate();
                     do
                     {
                         Console.WriteLine("\ni: Press any key to pause");
@@ -153,25 +156,54 @@ namespace _10958
                             Console.WriteLine(iteration);
                             read = sr.ReadLine();
                             command = GenerateCommand(read);
-                            com = new Command(command);
-                            double result = com.Solve();
-                            Console.WriteLine(command + ":" + result);
-                            if (result > 10957 && result < 10959)
+                            Console.WriteLine(command);
+                            foreach (string[] s in list)
                             {
-                                Console.WriteLine("=) This result is within acceptable range.");
-                                Console.WriteLine("   Writing to results.txt..");
-                                using (StreamWriter writetext = new StreamWriter("results.txt", true))
+                                string commandBracketed = s[0];
+                                for(int j = 0; j < 15; j++)
                                 {
-                                    writetext.WriteLine("iteration:" + iteration + ", command:" + command + ", result:" + result);
-                                    writetext.Close();
+                                    commandBracketed += command[j];
+                                    if ((j % 2) == 0)
+                                    {
+                                        commandBracketed += s[j/2+1];
+                                    }
                                 }
-                                Thread.Sleep(5000);
+                                //Console.WriteLine(commandBracketed);
+                                com = new Command(commandBracketed);
+                                double result = -1;
+
+                                try
+                                {
+                                    result = com.Solve();
+                                }
+                                catch(System.OverflowException e)
+                                {
+                                    Console.WriteLine("Value out of range");
+                                }
+                                catch(System.FormatException e)
+                                {
+                                    Console.WriteLine("Can't concatenate infinity");
+                                }
+                                Console.WriteLine(commandBracketed + "=" + result);
+                                if (result > 10957 && result < 10959)
+                                {
+                                    Console.WriteLine("=) This result is within acceptable range.");
+                                    Console.WriteLine("   Writing to results.txt..");
+                                    using (StreamWriter writetext = new StreamWriter("results.txt", true))
+                                    {
+                                        writetext.WriteLine("iteration:" + iteration + ", command:" + command + ", result:" + result);
+                                        writetext.Close();
+                                    }
+                                    Thread.Sleep(5000);
+                                }
                             }
+                            
                             iteration++;
                         }
                         cki = Console.ReadKey(true);
                         Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
                         Console.WriteLine(">: The application was paused by user input.");
+                        Console.WriteLine("   Current iteration:" + iteration);
                         Console.WriteLine();
                         try
                         {
@@ -200,8 +232,9 @@ namespace _10958
                     sr.Close();
                 }
             }
-            catch (Exception e)
+            catch (NullReferenceException e)
             {
+                Console.WriteLine(e.GetType());
                 Console.WriteLine("!: The file could not be read:");
                 Console.WriteLine("   "+e.Message);
                 if(e.Message == "Object reference not set to an instance of an object.")
