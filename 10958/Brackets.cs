@@ -18,13 +18,13 @@ namespace _10958
 
         public ArrayList Generate()
         {
-            string[] brackets = new string[9];
-            for(int i = 0; i < 9; i++)
+            string[] brackets = new string[10];
+            for(int i = 0; i < 10; i++)
             {
                 brackets[i] = "";
             }
             brackets[0] = "(";
-            for(int j = 2; j < 9; j++)
+            for(int j = 2; j < 10; j++)
             {
                 string[] temp = (string[])brackets.Clone();
                 temp[j] = ")";
@@ -36,7 +36,7 @@ namespace _10958
 
         public void GenerateRec(string[] brackets, int end)
         {
-            for(int i = end+1; i < 9; i++)
+            for(int i = end+1; i < 10; i++)
             {
                 string[] temp = (string[])brackets.Clone();
                 temp[0] += "(";

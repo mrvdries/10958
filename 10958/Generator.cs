@@ -160,12 +160,12 @@ namespace _10958
                             foreach (string[] s in list)
                             {
                                 string commandBracketed = s[0];
-                                for(int j = 0; j < 15; j++)
+                                for(int j = 0; j < 17; j++)
                                 {
                                     commandBracketed += command[j];
                                     if ((j % 2) == 0)
                                     {
-                                        commandBracketed += s[j/2+1];
+                                        commandBracketed += s[j / 2 + 1];
                                     }
                                 }
                                 //Console.WriteLine(commandBracketed);
@@ -191,7 +191,7 @@ namespace _10958
                                     Console.WriteLine("   Writing to results.txt..");
                                     using (StreamWriter writetext = new StreamWriter("results.txt", true))
                                     {
-                                        writetext.WriteLine("iteration:" + iteration + ", command:" + command + ", result:" + result);
+                                        writetext.WriteLine("iteration:" + iteration + ", command:" + commandBracketed + ", result:" + result);
                                         writetext.Close();
                                     }
                                     Thread.Sleep(5000);
